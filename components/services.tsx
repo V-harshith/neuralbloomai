@@ -83,13 +83,13 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => {
             const Icon = service.icon
             return (
               <div
                 key={index}
-                className={`group relative p-8 rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-lg ${
+                className={`group relative p-6 md:p-8 rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-lg ${
                   visibleCards.includes(index) ? "animate-fadeInUp" : "opacity-0"
                 }`}
                 style={{
@@ -103,15 +103,15 @@ export default function Services() {
 
                 <div className="relative z-10">
                   <div
-                    className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <Icon className="w-6 h-6 text-white" />
+                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">{service.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{service.description}</p>
 
-                  <div className="mt-6 flex items-center text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="mt-4 md:mt-6 flex items-center text-primary font-semibold text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Learn more →
                   </div>
                 </div>

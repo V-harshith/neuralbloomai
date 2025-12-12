@@ -2,19 +2,31 @@
 
 import Link from "next/link"
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react"
+import NewsletterSignup from "@/components/newsletter-signup"
 
 export default function Footer() {
   return (
     <footer className="bg-foreground text-background py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        {/* Newsletter Section */}
+        <div className="mb-12 pb-12 border-b border-background/20">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
+            <p className="text-background/70 mb-6">
+              Get the latest insights, tips, and updates delivered to your inbox.
+            </p>
+            <NewsletterSignup />
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 font-bold text-xl mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-foreground font-bold">
-                IB
+                NA
               </div>
-              <span>NeuralBloomAI</span>
+              <span>NeuralbloomAI</span>
             </div>
             <p className="text-background/70 text-sm">Transforming businesses through innovative digital solutions.</p>
           </div>
@@ -79,8 +91,8 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-background/70">
               <li className="flex items-center gap-2">
                 <Mail size={16} />
-                <a href="mailto:hello@innerbloomai.com" className="hover:text-background transition-colors">
-                  hello@NeuralBloomAI.com
+                <a href="mailto:hello@neuralbloomai.com" className="hover:text-background transition-colors">
+                  hello@neuralbloomai.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -100,7 +112,7 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-background/20 pt-8 mb-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-background/70">© 2025 NeuralBloomAI. All rights reserved.</p>
+            <p className="text-sm text-background/70">© 2025 NeuralbloomAI. All rights reserved.</p>
             <div className="flex gap-4">
               <a href="#" className="text-background/70 hover:text-background transition-colors">
                 <Linkedin size={20} />

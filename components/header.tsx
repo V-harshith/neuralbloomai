@@ -6,6 +6,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { smoothScroll } from "@/lib/smooth-scroll"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { useScrollProgress } from "@/hooks/use-scroll-progress"
 
 interface HeaderProps {
   isScrolled: boolean
@@ -13,6 +15,7 @@ interface HeaderProps {
 
 export default function Header({ isScrolled }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const scrollProgress = useScrollProgress()
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
@@ -28,10 +31,12 @@ export default function Header({ isScrolled }: HeaderProps) {
         isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border" : "bg-transparent"
       }`}
     >
+      {/* Scroll Progress Bar */}
+      <div className="absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-150" style={{ width: `${scrollProgress}%` }} />
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white font-bold">
-            IB
+            NA
           </div>
           <span className="text-foreground">NeuralbloomAI</span>
         </Link>
@@ -69,6 +74,7 @@ export default function Header({ isScrolled }: HeaderProps) {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
+          <ThemeToggle />
           <Link
             href="/contact"
             className="px-6 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"

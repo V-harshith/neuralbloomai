@@ -66,26 +66,26 @@ export default function Testimonials() {
 
         <div className={`relative max-w-3xl mx-auto ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
           {/* Testimonial Card */}
-          <div className="bg-card rounded-xl border border-border p-8 md:p-12 shadow-lg">
-            <div className="flex gap-1 mb-6">
+          <div className="bg-card rounded-xl border border-border p-6 md:p-12 shadow-lg">
+            <div className="flex gap-1 mb-4 md:mb-6">
               {Array.from({ length: testimonials[currentIndex].rating }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-primary text-primary" />
               ))}
             </div>
 
-            <p className="text-xl text-foreground mb-8 leading-relaxed">"{testimonials[currentIndex].content}"</p>
+            <p className="text-base md:text-xl text-foreground mb-6 md:mb-8 leading-relaxed">"{testimonials[currentIndex].content}"</p>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <p className="font-semibold text-foreground">{testimonials[currentIndex].name}</p>
                 <p className="text-muted-foreground text-sm">{testimonials[currentIndex].role}</p>
               </div>
 
               <div className="flex gap-2">
-                <button onClick={prev} className="p-2 rounded-lg border border-border hover:bg-muted transition-colors">
+                <button onClick={prev} className="p-2 rounded-lg border border-border hover:bg-muted transition-colors" aria-label="Previous testimonial">
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <button onClick={next} className="p-2 rounded-lg border border-border hover:bg-muted transition-colors">
+                <button onClick={next} className="p-2 rounded-lg border border-border hover:bg-muted transition-colors" aria-label="Next testimonial">
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>

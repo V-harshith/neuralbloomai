@@ -1,102 +1,159 @@
-import Link from "next/link"
-import { ArrowLeft, CheckCircle } from "lucide-react"
+"use client"
+
+import { useState, useEffect } from "react"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import { Card, CardContent } from "@/components/ui/card"
+import { Target, Users, Zap, Award } from "lucide-react"
+
+const values = [
+  {
+    icon: Target,
+    title: "Mission-Driven",
+    description: "We're committed to helping businesses transform through innovative digital solutions.",
+  },
+  {
+    icon: Users,
+    title: "Client-Focused",
+    description: "Your success is our success. We build lasting partnerships based on trust and results.",
+  },
+  {
+    icon: Zap,
+    title: "Innovation First",
+    description: "We stay ahead of the curve, leveraging the latest technologies to deliver cutting-edge solutions.",
+  },
+  {
+    icon: Award,
+    title: "Quality Obsessed",
+    description: "We never compromise on quality. Every project receives our full attention and expertise.",
+  },
+]
+
+const team = [
+  {
+    name: "Alex Rivera",
+    role: "Founder & CEO",
+    bio: "10+ years in digital transformation and AI solutions",
+  },
+  {
+    name: "Sarah Chen",
+    role: "Head of Design",
+    bio: "Award-winning designer with a passion for user experience",
+  },
+  {
+    name: "Marcus Johnson",
+    role: "Lead Developer",
+    bio: "Full-stack expert specializing in scalable architectures",
+  },
+  {
+    name: "Emily Watson",
+    role: "Marketing Director",
+    bio: "Data-driven strategist with proven track record",
+  },
+]
 
 export default function AboutPage() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
-        >
-          <ArrowLeft size={20} />
-          Back to Home
-        </Link>
+    <main className="min-h-screen bg-background">
+      <Header isScrolled={isScrolled} />
 
-        <div className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">About InnerBloomAI</h1>
-          <p className="text-xl text-foreground/70 max-w-3xl">
-            We are a digital agency dedicated to transforming businesses through innovative web design, marketing
-            solutions, automation, and email marketing services.
-          </p>
-        </div>
+      <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Hero Section */}
+          <div className="text-center mb-20">
+            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+              <span className="text-sm font-semibold text-primary">ABOUT US</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+              We Build Digital Experiences That Matter
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              NeuralbloomAI is a design and development agency focused on creating exceptional digital experiences. 
+              We combine creativity, technology, and strategy to help businesses thrive in the digital age.
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+            <div className="text-center">
+              <div className="text-5xl font-bold text-primary mb-2">60+</div>
+              <div className="text-muted-foreground">Happy Clients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-primary mb-2">150+</div>
+              <div className="text-muted-foreground">Projects</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-primary mb-2">98%</div>
+              <div className="text-muted-foreground">Satisfaction</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-primary mb-2">5+</div>
+              <div className="text-muted-foreground">Years</div>
+            </div>
+          </div>
+
+          {/* Values */}
+          <div className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+              Our Core Values
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {values.map((value, index) => {
+                const Icon = value.icon
+                return (
+                  <Card key={index} className="border-border hover:border-primary/50 transition-colors">
+                    <CardContent className="pt-6">
+                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{value.title}</h3>
+                      <p className="text-muted-foreground text-sm">{value.description}</p>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Team */}
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-foreground">Our Mission</h2>
-            <p className="text-foreground/70 mb-4">
-              At InnerBloomAI, our mission is to empower businesses of all sizes to achieve their digital goals. We
-              believe that every business deserves access to world-class digital solutions that drive growth,
-              engagement, and success.
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
+              Meet Our Team
+            </h2>
+            <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+              A diverse group of passionate professionals dedicated to your success
             </p>
-            <p className="text-foreground/70">
-              We combine creativity, technology, and strategy to deliver exceptional results that exceed our clients'
-              expectations.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-bold mb-6 text-foreground">Our Vision</h2>
-            <p className="text-foreground/70 mb-4">
-              We envision a world where businesses can leverage cutting-edge digital solutions to reach their full
-              potential. Our vision is to be the trusted partner for companies seeking to transform their digital
-              presence and achieve sustainable growth.
-            </p>
-            <p className="text-foreground/70">
-              Through innovation and excellence, we aim to set new standards in the digital agency industry.
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-foreground">Why Choose Us?</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              "Expert team with years of industry experience",
-              "Customized solutions tailored to your business needs",
-              "Proven track record of successful projects",
-              "Transparent communication and collaboration",
-              "Cutting-edge technology and tools",
-              "Dedicated support and ongoing optimization",
-            ].map((item, index) => (
-              <div key={index} className="flex gap-4">
-                <CheckCircle className="text-primary flex-shrink-0 mt-1" size={24} />
-                <p className="text-foreground/70">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-card rounded-2xl p-8 border border-border">
-          <h2 className="text-3xl font-bold mb-6 text-foreground">Our Services</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Web Design & Development</h3>
-              <p className="text-foreground/70">
-                We create stunning, responsive websites that engage your audience and drive conversions.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Marketing Services</h3>
-              <p className="text-foreground/70">
-                From SEO to social media, we develop comprehensive marketing strategies that deliver results.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Automation Services</h3>
-              <p className="text-foreground/70">
-                Streamline your business processes with our intelligent automation solutions.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Email Marketing</h3>
-              <p className="text-foreground/70">
-                Build meaningful relationships with your customers through targeted email campaigns.
-              </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {team.map((member, index) => (
+                <Card key={index} className="border-border hover:border-primary/50 transition-colors">
+                  <CardContent className="pt-6 text-center">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-3xl">👤</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
+                    <p className="text-primary font-semibold text-sm mb-2">{member.role}</p>
+                    <p className="text-muted-foreground text-sm">{member.bio}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </div>
+
+      <Footer />
     </main>
   )
 }
